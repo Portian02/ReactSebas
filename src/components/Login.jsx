@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Input from "./input";
-function Login() {
+function Logined() {
   const [show, hide] = useState(true);
 
   const click = () => {
@@ -18,4 +18,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Logined;
