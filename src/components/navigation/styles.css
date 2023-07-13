@@ -1,0 +1,21 @@
+.container {
+  background-color: coral;
+  padding: 0.5rem;
+}
+
+.text {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 1rem;
+}
+
+text :hover {
+  color: brown;
+  text-decoration: underline;
+}
