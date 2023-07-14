@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Input.css";
-
+import Swal from "sweetalert2";
 /////////////////////////////////////////////////FUNCION FORMULARIO////////////////////////////////////////////////////////////////////////////77
 const Form = ({ onSubmit }) => {
   const [usuario, setUsuario] = useState("");
@@ -13,9 +13,32 @@ const Form = ({ onSubmit }) => {
   const handlePasword = (e) => {
     setContrasena(e.target.value);
   };
-  const handleLogin = () => {
-    if (usuario && contrasena) {
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Lista de objetos con usuarios y contraseñas para validar
+    const users = [
+      { usuario: "Sebas", password: "310210Ap" },
+      { usuario: "Jaki", password: "078901" },
+      { usuario: "Prii", password: "010591" },
+    ];
+    const found = users.find(
+      (user) =>
+        user.usuario.toLowerCase() === usuario.toLowerCase() &&
+        user.password === contrasena
+    );
+    console.log(found);
+
+    if (found) {
       onSubmit({ user: usuario, password: contrasena });
+      console.log({ user: usuario, password: contrasena });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Contraseña o Usuario incirrecto, porfavor intentelo nuevamente",
+        footer: '<a href="">Why do I have this issue?</a>',
+      });
     }
   };
 
@@ -48,7 +71,7 @@ const Form = ({ onSubmit }) => {
         <br />
         <br />
         {/* ///////////////////////////////////////BOTON INICIAR SESIÓN/////////////////////////////////////////////////////////////// */}
-        <button onClick={handleLogin} type="submit" className="input">
+        <button type="submit" className="input">
           Iniciar sesión
         </button>
         {/* ///////////////////////////////////////BOTON INICIAR SESIÓN/////////////////////////////////////////////////////////////// */}
